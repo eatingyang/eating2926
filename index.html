@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 九州自駕行</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --bg-color: #F7F5F0; /* 和紙白 */
+            --primary: #2C3E50;  /* 鉄黑 */
+            --accent: #B79455;   /* 金茶 */
+            --res-bg: #FFF8E1;   /* 預約卡背景 */
+            --res-border: #FFECB3;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary);
+            padding-bottom: 90px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .serif { font-family: 'Noto Serif JP', serif; }
+
+        /* 卡片風格 */
+        .card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        /* 預約專用樣式 */
+        .card-res {
+            background: var(--res-bg);
+            border-left: 4px solid #FFA000;
+            border-top: 1px solid var(--res-border);
+            border-bottom: 1px solid var(--res-border);
+            border-right: 1px solid var(--res-border);
+        }
+
+        /* 標籤 */
+        .tag {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+        .tag-flight { background: #E3F2FD; color: #1565C0; }
+        .tag-car { background: #ECEFF1; color: #455A64; }
+        .tag-food { background: #FBE9E7; color: #D84315; }
+        .tag-stay { background: #E8F5E9; color: #2E7D32; }
+        .tag-res { background: #FF6F00; color: white; }
+
+        /* 導航按鈕 */
+        .btn-nav {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 12px;
+            width: 100%;
+            transition: opacity 0.2s;
+            text-decoration: none;
+        }
+        .btn-nav:active { opacity: 0.8; }
+        
+        /* 底部選單 */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+            z-index: 100;
+        }
+        .tab-btn {
+            text-align: center;
+            color: #9CA3AF;
+            font-size: 10px;
+            flex: 1;
+        }
+        .tab-btn.active { color: var(--primary); font-weight: 700; }
+        .tab-btn i { font-size: 20px; margin-bottom: 4px; display: block; }
+        
+        /* 強調文字 */
+        .highlight { color: #D32F2F; font-weight: bold; }
+        .code-box { font-family: monospace; background: #EEE; padding: 2px 6px; border-radius: 4px; color: #333; font-weight: bold; }
+        
+        /* 隱藏/顯示控制 */
+        .page { display: none; padding: 16px; animation: fadeIn 0.3s; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    </style>
+</head>
+<body>
+
+    <header class="sticky top-0 z-50 bg-[#F7F5F0]/95 backdrop-blur border-b border-gray-200 px-5 py-4 flex justify-between items-center">
+        <div>
+            <h1 class="serif text-xl font-bold tracking-widest text-gray-800">九州冬旅</h1>
+            <p class="text-[10px] text-gray-500">2026.02.14 - 19 | 8人自駕</p>
+        </div>
+        <div class="text-right">
+             <i class="fas fa-car text-gray-400"></i>
+        </div>
+    </header>
+
+    <div id="p-schedule" class="page active">
+        
+        <div class="mb-8">
+            <div class="flex justify-between items-baseline mb-3 px-1">
+                <h2 class="serif text-2xl font-bold">2/14 <span class="text-sm font-sans font-normal text-gray-500">Sat</span></h2>
+                <span class="text-xs text-gray-500"><i class="fas fa-sun mr-1"></i>熊本 9°C</span>
+            </div>
+            
+            <div class="card">
+                <span class="tag tag-flight">交通</span>
+                <h3 class="font-bold text-lg">CI 198 抵達熊本</h3>
+                <p class="text-sm text-gray-600 mt-1">07:30 高雄 → 10:55 熊本</p>
+                <div class="mt-3 border-t border-dashed border-gray-200 pt-2 text-sm text-gray-700">
+                    <p>🚗 <strong>取車：</strong>機場櫃檯 (Alphard + Hustle)</p>
+                    <p class="text-xs text-red-500 mt-1">* 務必確認 ETC 卡與雪胎。</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-stay">住宿</span>
+                <h3 class="font-bold text-lg">由布院 別邸 Gensen</h3>
+                <p class="text-sm text-gray-600 mt-1">享受私人溫泉，晚餐前 Check-in。</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Yufuin+Bettei+Gensen" target="_blank" class="btn-nav">
+                    <i class="fas fa-location-arrow mr-2"></i> 導航至民宿
+                </a>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <div class="flex justify-between items-baseline mb-3 px-1">
+                <h2 class="serif text-2xl font-bold">2/15 <span class="text-sm font-sans font-normal text-gray-500">Sun</span></h2>
+                <span class="text-xs text-gray-500"><i class="fas fa-cloud mr-1"></i>由布院 8°C</span>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-flight">景點</span>
+                <h3 class="font-bold text-lg">由布院散策 & 別府</h3>
+                <p class="text-sm text-gray-600 mt-2">
+                    1. <span class="highlight">金鱗湖</span>：晨霧最美。<br>
+                    2. <span class="highlight">湯之坪街道</span>：必吃 B-Speak、金賞可樂餅。<br>
+                    3. <span class="highlight">別府地獄</span>：海地獄 (若時間允許)。
+                </p>
+            </div>
+
+            <div class="card card-res">
+                <div class="flex justify-between items-start">
+                    <span class="tag tag-res">重要預約</span>
+                    <span class="text-xs font-bold text-orange-800">19:00</span>
+                </div>
+                <h3 class="font-bold text-xl mt-1 text-gray-800">山家料理 湯の岳庵</h3>
+                <div class="mt-3 text-sm text-gray-700 space-y-1">
+                    <p>👤 人數：8 位 (7大1小)</p>
+                    <p>⚠️ 備註：<span class="highlight">1 位不吃螃蟹</span></p>
+                    <p>🎫 代號：<span class="code-box">JCB 1104</span></p>
+                    <p>💳 付款：建議使用 JCB 卡</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Yunotakean+Yufuin" target="_blank" class="btn-nav bg-orange-700">
+                    <i class="fas fa-utensils mr-2"></i> 導航至餐廳
+                </a>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <div class="flex justify-between items-baseline mb-3 px-1">
+                <h2 class="serif text-2xl font-bold">2/16 <span class="text-sm font-sans font-normal text-gray-500">Mon</span></h2>
+                <span class="text-xs text-gray-500"><i class="fas fa-snowflake mr-1"></i>九重 -2°C</span>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-flight">活動</span>
+                <h3 class="font-bold text-lg">九重森林公園滑雪場</h3>
+                <p class="text-sm text-gray-600 mt-1">09:00 開滑。九州最大滑雪場。</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Kokonoe+Forest+Park+Ski+Resort" target="_blank" class="btn-nav">
+                    <i class="fas fa-snowflake mr-2"></i> 導航至雪場
+                </a>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-stay">住宿</span>
+                <h3 class="font-bold text-lg">福岡海鷹希爾頓</h3>
+                <p class="text-sm text-gray-600 mt-1">Check-in 後可至旁邊 E-ZO 福岡用餐。</p>
+                <p class="text-xs text-red-500 mt-2">* 停車場限高 2.1m (Alphard OK)。</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Hilton+Fukuoka+Sea+Hawk" target="_blank" class="btn-nav">
+                    <i class="fas fa-hotel mr-2"></i> 導航至飯店
+                </a>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <div class="flex justify-between items-baseline mb-3 px-1">
+                <h2 class="serif text-2xl font-bold">2/17 <span class="text-sm font-sans font-normal text-gray-500">Tue</span></h2>
+                <span class="text-xs text-gray-500"><i class="fas fa-sun mr-1"></i>福岡 11°C</span>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-flight">景點</span>
+                <h3 class="font-bold text-lg">海之中道海濱公園</h3>
+                <p class="text-sm text-gray-600 mt-1">水豚溫泉、親子腳踏車。</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Uminonakamichi+Seaside+Park" target="_blank" class="btn-nav">
+                    <i class="fas fa-map-pin mr-2"></i> 導航前往
+                </a>
+            </div>
+
+            <div class="card card-res" style="border-left-color: #1976D2;">
+                <div class="flex justify-between items-start">
+                    <span class="tag tag-res" style="background:#1565C0;">重要預約</span>
+                    <span class="text-xs font-bold text-blue-800">18:45</span>
+                </div>
+                <h3 class="font-bold text-xl mt-1 text-gray-800">博多水炊鍋 鳥知名</h3>
+                <div class="mt-3 text-sm text-gray-700 space-y-1">
+                    <p>👥 分組：<span class="highlight">3人 + 5人</span> (共2組)</p>
+                    <p>ℹ️ 平台：TableCheck</p>
+                    <p>🍲 必點：雞肉刺身、膠原蛋白雞湯、<span class="highlight">雜炊 (最後的粥)</span>。</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Torichiyo+Hakata" target="_blank" class="btn-nav" style="background:#1565C0;">
+                    <i class="fas fa-utensils mr-2"></i> 導航至餐廳
+                </a>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <div class="flex justify-between items-baseline mb-3 px-1">
+                <h2 class="serif text-2xl font-bold">2/18 <span class="text-sm font-sans font-normal text-gray-500">Wed</span></h2>
+                <span class="text-xs text-gray-500"><i class="fas fa-cloud mr-1"></i>太宰府 7°C</span>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-flight">文化</span>
+                <h3 class="font-bold text-lg">太宰府天滿宮 & 遊樂園</h3>
+                <p class="text-sm text-gray-600 mt-2">
+                    <span class="highlight">必吃</span>：梅枝餅 (現烤)。<br>
+                    <span class="highlight">必去</span>：星巴克概念店、遊樂園。
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-food">晚餐</span>
+                <h3 class="font-bold text-lg">中洲 / 天神 屋台體驗</h3>
+                <p class="text-sm text-gray-600 mt-1">建議 4+4 人分開行動。</p>
+                <p class="text-sm text-gray-500 mt-1">推薦：明太子玉子燒、烤拉麵。</p>
+            </div>
+        </div>
+
+         <div class="mb-8">
+            <div class="flex justify-between items-baseline mb-3 px-1">
+                <h2 class="serif text-2xl font-bold">2/19 <span class="text-sm font-sans font-normal text-gray-500">Thu</span></h2>
+                <span class="text-xs text-gray-500">✈️ 返程</span>
+            </div>
+
+            <div class="card bg-gray-50 border-gray-200">
+                <h3 class="font-bold text-lg mb-2">🕛 中午組 (3人)</h3>
+                <p class="text-sm text-gray-600">CI 班機 | 10:00 前往機場</p>
+            </div>
+            
+            <div class="card bg-gray-50 border-gray-200">
+                <h3 class="font-bold text-lg mb-2">🕗 晚上組 (5人)</h3>
+                <p class="text-sm text-gray-600 mb-2">BR 0119 (20:10起飛)</p>
+                <div class="text-sm text-gray-600 border-t border-gray-200 pt-2">
+                    <p>推薦行程：<span class="highlight">LaLaport 福岡</span></p>
+                    <p>看 1:1 鋼彈、最後採買、晚餐。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="p-info" class="page">
+        <h2 class="serif text-2xl font-bold mb-4">實用資訊</h2>
+        
+        <div class="card">
+            <h3 class="font-bold border-b pb-2 mb-2"><i class="fas fa-car text-gray-400 mr-2"></i>租車詳情</h3>
+            <p><strong>大車：</strong> Toyota Alphard (8人座)</p>
+            <p><strong>小車：</strong> Suzuki Hustle (輕型)</p>
+            <p class="text-xs text-red-500 mt-2">加油種類：Regular (紅色油槍)</p>
+        </div>
+
+        <div class="card">
+            <h3 class="font-bold border-b pb-2 mb-2"><i class="fas fa-phone-alt text-gray-400 mr-2"></i>緊急電話</h3>
+            <div class="flex justify-between py-2 border-b border-gray-100">
+                <span>警察局</span>
+                <a href="tel:110" class="font-mono text-blue-600 font-bold">110</a>
+            </div>
+            <div class="flex justify-between py-2 border-b border-gray-100">
+                <span>救護車/火警</span>
+                <a href="tel:119" class="font-mono text-blue-600 font-bold">119</a>
+            </div>
+            <div class="flex justify-between py-2">
+                <span>駐日代表處</span>
+                <a href="tel:+81927347139" class="font-mono text-blue-600 font-bold">+81-92-734-7139</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="p-money" class="page">
+        <h2 class="serif text-2xl font-bold mb-4">公費記帳</h2>
+        
+        <div class="card bg-gray-800 text-white">
+            <p class="text-xs text-gray-400">目前總支出 (JPY)</p>
+            <p id="total-amount" class="text-3xl font-mono font-bold mt-1">¥0</p>
+        </div>
+
+        <div class="card">
+            <div class="flex gap-2 mb-2">
+                <input id="ex-name" type="text" placeholder="項目 (例:過路費)" class="flex-1 p-2 border rounded bg-gray-50 text-sm">
+                <input id="ex-cost" type="number" placeholder="¥金額" class="w-24 p-2 border rounded bg-gray-50 text-sm">
+            </div>
+            <button onclick="addExpense()" class="btn-nav mt-0 bg-black text-white">
+                <i class="fas fa-plus mr-2"></i> 新增支出
+            </button>
+        </div>
+
+        <div id="expense-list" class="space-y-2 pb-20">
+            </div>
+    </div>
+
+    <nav class="tab-bar">
+        <div class="tab-btn active" onclick="switchPage('p-schedule', this)">
+            <i class="fas fa-map-marked-alt"></i>行程
+        </div>
+        <div class="tab-btn" onclick="switchPage('p-info', this)">
+            <i class="fas fa-passport"></i>資訊
+        </div>
+        <div class="tab-btn" onclick="switchPage('p-money', this)">
+            <i class="fas fa-wallet"></i>記帳
+        </div>
+    </nav>
+
+    <script>
+        // 頁面切換邏輯
+        function switchPage(pageId, btn) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            window.scrollTo(0,0);
+        }
+
+        // 記帳邏輯 (使用 LocalStorage 永久儲存)
+        let expenses = JSON.parse(localStorage.getItem('kyushu_expenses')) || [];
+
+        function renderExpenses() {
+            const list = document.getElementById('expense-list');
+            const totalEl = document.getElementById('total-amount');
+            list.innerHTML = '';
+            
+            let total = 0;
+            expenses.forEach((item, index) => {
+                total += parseInt(item.cost);
+                const row = document.createElement('div');
+                row.className = 'card flex justify-between items-center py-3 px-4 mb-2';
+                row.innerHTML = `
+                    <div>
+                        <div class="font-bold text-sm">${item.name}</div>
+                        <div class="text-[10px] text-gray-400">${item.date}</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="font-mono font-bold">¥${parseInt(item.cost).toLocaleString()}</span>
+                        <button onclick="removeExpense(${index})" class="text-gray-300 hover:text-red-500"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+                list.appendChild(row);
+            });
+            totalEl.innerText = '¥' + total.toLocaleString();
+        }
+
+        function addExpense() {
+            const name = document.getElementById('ex-name').value;
+            const cost = document.getElementById('ex-cost').value;
+            if (name && cost) {
+                const now = new Date();
+                const dateStr = `${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${now.getMinutes().toString().padStart(2,'0')}`;
+                expenses.unshift({ name, cost, date: dateStr });
+                localStorage.setItem('kyushu_expenses', JSON.stringify(expenses));
+                document.getElementById('ex-name').value = '';
+                document.getElementById('ex-cost').value = '';
+                renderExpenses();
+            }
+        }
+
+        function removeExpense(index) {
+            if(confirm('確定刪除此筆紀錄？')) {
+                expenses.splice(index, 1);
+                localStorage.setItem('kyushu_expenses', JSON.stringify(expenses));
+                renderExpenses();
+            }
+        }
+
+        // 初始化
+        renderExpenses();
+    </script>
+</body>
+</html>
