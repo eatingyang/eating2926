@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 九州自駕行</title>
+    <title>2026 九州 YANG 冬旅</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
         
         :root {
-            --bg-color: #F7F5F0; /* 和紙白 */
-            --primary: #2C3E50;  /* 鉄黑 */
-            --accent: #B79455;   /* 金茶 */
-            --res-bg: #FFF8E1;   /* 預約卡背景 */
+            --bg-color: #F7F5F0; 
+            --primary: #2C3E50;  
+            --accent: #B79455;   
+            --res-bg: #FFF8E1;   
             --res-border: #FFECB3;
         }
 
@@ -27,7 +27,6 @@
 
         .serif { font-family: 'Noto Serif JP', serif; }
 
-        /* 卡片風格 */
         .card {
             background: #FFFFFF;
             border-radius: 16px;
@@ -38,7 +37,6 @@
             position: relative;
         }
 
-        /* 預約專用樣式 */
         .card-res {
             background: var(--res-bg);
             border-left: 4px solid #FFA000;
@@ -47,7 +45,6 @@
             border-right: 1px solid var(--res-border);
         }
 
-        /* 標籤 */
         .tag {
             font-size: 11px;
             padding: 3px 8px;
@@ -62,7 +59,6 @@
         .tag-stay { background: #E8F5E9; color: #2E7D32; }
         .tag-res { background: #FF6F00; color: white; }
 
-        /* 導航按鈕 */
         .btn-nav {
             display: inline-flex;
             align-items: center;
@@ -80,7 +76,6 @@
         }
         .btn-nav:active { opacity: 0.8; }
         
-        /* 底部選單 */
         .tab-bar {
             position: fixed;
             bottom: 0;
@@ -102,14 +97,16 @@
         .tab-btn.active { color: var(--primary); font-weight: 700; }
         .tab-btn i { font-size: 20px; margin-bottom: 4px; display: block; }
         
-        /* 強調文字 */
         .highlight { color: #D32F2F; font-weight: bold; }
         .code-box { font-family: monospace; background: #EEE; padding: 2px 6px; border-radius: 4px; color: #333; font-weight: bold; }
         
-        /* 隱藏/顯示控制 */
         .page { display: none; padding: 16px; animation: fadeIn 0.3s; }
         .page.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* 隱藏滾動條 */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
     </style>
 </head>
@@ -126,6 +123,7 @@
     </header>
 
     <div id="p-schedule" class="page active">
+        
         <div class="mb-8">
             <div class="flex justify-between items-baseline mb-3 px-1">
                 <h2 class="serif text-2xl font-bold">2/14 <span class="text-sm font-sans font-normal text-gray-500">Sat</span></h2>
@@ -157,22 +155,16 @@
                 </div>
                 <h3 class="font-bold text-lg mb-2">🍓 南阿蘇ふれあい農園</h3>
                 <p class="text-sm text-gray-600 mb-2">阿蘇湧泉水栽種的高甜度草莓！</p>
-                
                 <div class="bg-pink-50 p-2 rounded text-xs text-gray-600 space-y-1 mb-3">
                     <p>📍 <b>順路：</b>機場往南阿蘇方向，非常順路。</p>
                     <p>🍽️ <b>午餐：</b>建議順路去「道の駅 あそ望の郷くぎの」用餐。</p>
                 </div>
-
                 <a href="https://www.google.com/maps/search/?api=1&query=採草莓+南阿蘇+ふれあい+農園" target="_blank" class="btn-nav bg-pink-500">
                     <i class="fas fa-location-arrow mr-2"></i> 導航至農園
                 </a>
             </div>
 
             <div class="flex flex-col items-center my-2 opacity-60">
-                <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
-                <div class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600 flex items-center">
-                    <i class="fas fa-car mr-2"></i> 阿蘇景觀路約 1小時 50分
-             <div class="flex flex-col items-center my-2 opacity-60">
                 <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
                 <div class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600 flex items-center">
                     <i class="fas fa-car mr-2"></i> 阿蘇景觀路約 1小時 50分
@@ -186,7 +178,6 @@
                     <h3 class="font-bold text-lg">由布院 別邸 別墅</h3>
                     <p class="text-xs text-gray-500 mt-1">2晚·不含餐</p>
                 </div>
-
                 <div class="flex overflow-x-auto gap-2 px-4 pb-4 snap-x hide-scrollbar" style="scroll-behavior: smooth;">
                     <div class="flex-none w-64 h-40 rounded-lg overflow-hidden snap-center border border-gray-100 relative">
                         <img src="https://raw.githubusercontent.com/eatingyang/eating2926/refs/heads/main/IMG_9735.jpeg" class="w-full h-full object-cover" alt="榻榻米房">
@@ -207,24 +198,15 @@
                         <img src="https://raw.githubusercontent.com/eatingyang/eating2926/refs/heads/main/IMG_9739.jpeg" class="w-full h-full object-cover" alt="榻榻米房2">
                     </div>
                 </div>
-
                 <div class="px-4 pb-4">
                     <div class="bg-gray-50 rounded-lg p-3 text-sm text-gray-700 space-y-2 border border-gray-100">
                         <div class="flex items-center font-bold text-gray-800 border-b border-gray-200 pb-1 mb-1">
                             <i class="fas fa-home mr-2 text-blue-500"></i> 房型配置 (3房1廳2衛)
                         </div>
-                        
                         <div class="grid grid-cols-2 gap-2 text-xs">
-                            <div>
-                                <span class="font-bold block text-gray-500">臥室 1</span>
-                                4張單人床 (1m寬)
-                            </div>
-                            <div>
-                                <span class="font-bold block text-gray-500">臥室 2 & 3</span>
-                                各3張榻榻米
-                            </div>
+                            <div><span class="font-bold block text-gray-500">臥室 1</span>4張單人床 (1m寬)</div>
+                            <div><span class="font-bold block text-gray-500">臥室 2 & 3</span>各3張榻榻米</div>
                         </div>
-
                         <div class="flex items-start gap-2 pt-1">
                             <i class="fas fa-info-circle text-gray-400 mt-1"></i>
                             <div class="text-xs text-gray-500">
@@ -237,22 +219,15 @@
                         <i class="fas fa-location-arrow mr-2"></i> 導航至民宿
                     </a>
                 </div>
-            </div> </div> <div class="mb-8">
+            </div>
+        </div>
+
+        <div class="mb-8">
             <div class="flex justify-between items-baseline mb-3 px-1">
                 <h2 class="serif text-2xl font-bold">2/15 <span class="text-sm font-sans font-normal text-gray-500">Sun</span></h2>
-
                 <span id="weather-1" class="text-xs text-gray-500"><i class="fas fa-sync fa-spin mr-1"></i>由布院載入中...</span>
             </div>
 
-            <div class="card">
-                <span class="tag tag-flight">景點</span>
-                <h3 class="font-bold text-lg">由布院散策 & 別府</h3>
-                <p class="text-sm text-gray-600 mt-2">
-                    1. <span class="highlight">金鱗湖</span>：晨霧最美。<br>
-                    2. <span class="highlight">湯之坪街道</span>：B-Speak、銅鑼燒 清單再新增。<br>
-                    3. <span class="highlight">別府地獄</span>：海地獄 (若時間允許)。
-                </p>
-            </div>
             <div class="card border-l-4 border-amber-600">
                 <div class="flex justify-between items-start">
                     <span class="tag tag-food bg-amber-100 text-amber-800">早餐</span>
@@ -268,13 +243,21 @@
                     <i class="fas fa-mug-hot mr-2"></i> 導航至咖啡廳
                 </a>
             </div>
-              <div class="mb-4">
+
+            <div class="card">
+                <span class="tag tag-flight">景點</span>
+                <h3 class="font-bold text-lg">由布院散策 & 別府</h3>
+                <p class="text-sm text-gray-600 mt-2">
+                    1. <span class="highlight">金鱗湖</span>：晨霧最美。<br>
+                    2. <span class="highlight">別府地獄</span>：海地獄 (若時間允許)。
+                </p>
+            </div>
+            
+            <div class="mb-4">
                 <h3 class="font-bold text-gray-800 mb-2 px-1 text-sm">
                     <i class="fas fa-utensils text-orange-400 mr-1"></i> 美食口袋名單 (左右滑動)
                 </h3>
-                
                 <div class="flex overflow-x-auto gap-3 pb-2 snap-x hide-scrollbar" style="scroll-behavior: smooth;">
-                    
                     <div class="min-w-[200px] bg-white rounded-xl p-3 border border-gray-100 shadow-sm snap-center flex flex-col justify-between">
                         <div>
                             <span class="tag bg-red-100 text-red-600">排隊名店</span>
@@ -285,7 +268,6 @@
                             <i class="fas fa-location-arrow mr-1"></i> 金鱗湖店導航
                         </a>
                     </div>
-
                     <div class="min-w-[200px] bg-white rounded-xl p-3 border border-gray-100 shadow-sm snap-center flex flex-col justify-between">
                         <div>
                             <span class="tag bg-yellow-100 text-yellow-700">甜點</span>
@@ -296,7 +278,6 @@
                             <i class="fas fa-location-arrow mr-1"></i> 導航去買
                         </a>
                     </div>
-
                     <div class="min-w-[200px] bg-white rounded-xl p-3 border border-gray-100 shadow-sm snap-center flex flex-col justify-between">
                         <div>
                             <span class="tag bg-yellow-100 text-yellow-700">甜點</span>
@@ -316,7 +297,6 @@
                             <i class="fas fa-location-arrow mr-1"></i> 導航去吃
                         </a>
                     </div>
-
                     <div class="min-w-[200px] bg-white rounded-xl p-3 border border-gray-100 shadow-sm snap-center flex flex-col justify-between">
                         <div>
                             <span class="tag bg-orange-100 text-orange-700">邊走邊吃</span>
@@ -327,11 +307,8 @@
                             <i class="fas fa-location-arrow mr-1"></i> 導航去吃
                         </a>
                     </div>
-                    
                 </div>
             </div>
-
-           
 
             <div class="card card-res">
                 <div class="flex justify-between items-start">
@@ -356,19 +333,19 @@
                 <h2 class="serif text-2xl font-bold">2/16 <span class="text-sm font-sans font-normal text-gray-500">Mon</span></h2>
                 <span id="weather-2" class="text-xs text-gray-500"><i class="fas fa-sync fa-spin mr-1"></i>九重載入中...</span>
             </div>
-<div class="flex flex-col items-center my-2 opacity-60">
-    <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
-    <div class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600 flex items-center">
-        <i class="fas fa-car mr-2"></i> 山路約 50分
-    </div>
-    <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
-</div>
+            <div class="flex flex-col items-center my-2 opacity-60">
+                <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
+                <div class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600 flex items-center">
+                    <i class="fas fa-car mr-2"></i> 山路約 50分
+                </div>
+                <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
+            </div>
 
             <div class="card">
                 <span class="tag tag-flight">活動</span>
                 <h3 class="font-bold text-lg">九重森林公園滑雪場</h3>
-                <span class="tag tag-res" style="background:#1565C0;">09:30-11:00 13:30-15:00教練課2堂 </span>
-                <p class="text-sm text-gray-600 mt-1">7:45出門 8:45預估抵達 雪衣事前租借穿戴。</p>
+                <span class="tag tag-res mt-1" style="background:#1565C0;">09:30-11:00 13:30-15:00教練課2堂 </span>
+                <p class="text-sm text-gray-600 mt-2">7:45出門 8:45預估抵達 雪衣事前租借穿戴。</p>
                 <div class="mt-2 text-sm text-gray-600 space-y-1 bg-gray-50 p-2 rounded">
                     <p>☕ <b>推薦：</b>午餐推薦休息室的豬排咖哩</p>
                 </div>
@@ -382,19 +359,18 @@
                         <span class="text-xs font-bold">路面情報 Check</span>
                     </a>
                 </div>
-
                 <a href="https://www.google.com/maps/search/?api=1&query=Kokonoe+Forest+Park+Ski+Resort" target="_blank" class="btn-nav">
                     <i class="fas fa-location-arrow mr-2"></i> 導航至雪場
                 </a>
             </div>
-                        <div class="card border-l-4 border-red-600">
+
+            <div class="card border-l-4 border-red-600">
                 <div class="flex justify-between items-center mb-2">
                     <span class="tag bg-red-100 text-red-800">中途補給</span>
                     <span class="text-xs text-gray-400">順路 / 好停車</span>
                 </div>
                 <h3 class="font-bold text-lg mb-3">🍜 自駕順路拉麵推薦</h3>
                 <p class="text-xs text-gray-500 mb-3">滑完雪回福岡途中，交流道附近的必吃名店。</p>
-
                 <div class="mb-3 pb-3 border-b border-gray-100">
                     <div class="flex justify-between items-center mb-1">
                         <h4 class="font-bold text-sm text-red-700">1. 大砲拉麵 (小郡店)</h4>
@@ -406,7 +382,6 @@
                         久留米拉麵的始祖！湯頭比博多拉麵更濃郁（有泡泡的濃湯），是九州在地人的愛店。滑雪後吃這種重口味超爽！
                     </div>
                 </div>
-
                 <div class="mb-3">
                     <div class="flex justify-between items-center mb-1">
                         <h4 class="font-bold text-sm text-red-700">2. 一蘭拉麵 (太宰府店)</h4>
@@ -418,20 +393,19 @@
                         這家不是觀光區那間「五角碗」，而是好停車的路邊大店。品質穩定，小孩也愛吃，不想踩雷就選這。
                     </div>
                 </div>
-
                 <a href="https://www.google.com/maps/search/?api=1&query=Kiyama+Parking+Area+Up" target="_blank" class="block bg-gray-100 p-2 rounded text-center hover:bg-gray-200 transition">
                     <span class="text-xs font-bold text-gray-600">😴 累了不想下交流道？去「基山 PA (上行)」</span>
                     <span class="block text-[9px] text-gray-400">休息站內也有好吃的烏龍麵與拉麵，停車最方便。</span>
                 </a>
             </div>
 
-<div class="flex flex-col items-center my-2 opacity-60">
-    <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
-    <div class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600 flex items-center">
-        <i class="fas fa-car mr-2"></i> 約 2小時 10分
-    </div>
-    <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
-</div>
+            <div class="flex flex-col items-center my-2 opacity-60">
+                <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
+                <div class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600 flex items-center">
+                    <i class="fas fa-car mr-2"></i> 約 2小時 10分
+                </div>
+                <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
+            </div>
 
             <div class="card">
                 <span class="tag tag-stay">住宿</span>
@@ -449,13 +423,13 @@
                 <h2 class="serif text-2xl font-bold">2/17 <span class="text-sm font-sans font-normal text-gray-500">Tue</span></h2>
                 <span id="weather-3" class="text-xs text-gray-500"><i class="fas fa-sync fa-spin mr-1"></i>福岡載入中...</span>
             </div>
-<div class="flex flex-col items-center my-2 opacity-60">
-    <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
-    <div class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600 flex items-center">
-        <i class="fas fa-car mr-2"></i> 約 25分
-    </div>
-    <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
-</div>
+            <div class="flex flex-col items-center my-2 opacity-60">
+                <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
+                <div class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600 flex items-center">
+                    <i class="fas fa-car mr-2"></i> 約 25分
+                </div>
+                <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
+            </div>
 
             <div class="card border-l-4 border-teal-500">
                 <div class="flex justify-between items-center mb-2">
@@ -475,14 +449,14 @@
                         <i class="fas fa-map text-xl mb-1 text-teal-600"></i>
                         <span class="text-xs font-bold">下載園區地圖</span>
                     </a>
-
-                    <a href="https://www.google.com/maps/search/?api=1&query=Uminonakamichi+Seaside+Park" target="_blank" class="flex flex-col items-center justify-center bg-teal-600 text-white p-2 rounded-lg shadow-md active:scale-95 transition">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Uminonakamichi+Seaside+Park" target="_blank" class="flex flex-col items-center justify-center bg-teal-600 text-white p-2 rounded-lg shadow-md active:scale-95 transition col-span-2">
                         <i class="fas fa-location-arrow text-xl mb-1"></i>
                         <span class="text-xs font-bold">導航前往</span>
                     </a>
                 </div>
             </div>
-                        <div class="card border-l-4 border-emerald-500">
+
+            <div class="card border-l-4 border-emerald-500">
                 <div class="flex justify-between items-center mb-2">
                     <span class="tag bg-emerald-100 text-emerald-800">藥院散策</span>
                     <span class="text-xs text-gray-400">半天行程推薦</span>
@@ -507,11 +481,11 @@
                         <span class="text-[10px] bg-red-100 text-red-600 px-1 rounded">高CP值 Omakase</span>
                     </div>
                 </div>
-
                 <a href="https://www.google.com/maps/search/?api=1&query=藥院+YakuinArea" target="_blank" class="btn-nav bg-emerald-600">
                     <i class="fas fa-map-marked-alt mr-2"></i> 導航至藥院大通站
                 </a>
             </div>
+
             <div class="card border-l-4 border-yellow-500">
                 <div class="flex justify-between items-center mb-2">
                     <span class="tag bg-yellow-100 text-yellow-800">家居選物</span>
@@ -529,7 +503,6 @@
                             </div>
                             <p class="text-[10px] text-gray-500 mt-1">兩層樓的生活道具屋，福岡家居指標店。</p>
                         </a>
-                        
                         <a href="https://maps.app.goo.gl/nfy9jqvASbkHVWLE9?g_st=ic" target="_blank" class="block bg-gray-50 p-2 rounded hover:bg-yellow-50 transition border border-gray-100">
                             <div class="flex justify-between items-center">
                                 <span class="text-sm font-bold text-gray-800">BBB &</span>
@@ -537,7 +510,6 @@
                             </div>
                             <p class="text-[10px] text-gray-500 mt-1">BBB Potters 的姊妹店，選品更偏向業務用風格。</p>
                         </a>
-
                         <a href="https://maps.app.goo.gl/ye2t6qLsqGZDPriSA?g_st=ic" target="_blank" class="block bg-gray-50 p-2 rounded hover:bg-yellow-50 transition border border-gray-100">
                             <div class="flex justify-between items-center">
                                 <span class="text-sm font-bold text-gray-800">NONE TOO SOON</span>
@@ -545,7 +517,6 @@
                             </div>
                             <p class="text-[10px] text-gray-500 mt-1">精緻雜貨與伴手禮，適合挑禮物。</p>
                         </a>
-
                         <a href="https://maps.app.goo.gl/5VBwAvgTdV3ezV2t9?g_st=ipc" target="_blank" class="block bg-gray-50 p-2 rounded hover:bg-yellow-50 transition border border-gray-100">
                             <div class="flex justify-between items-center">
                                 <span class="text-sm font-bold text-gray-800">LT Gallery</span>
@@ -563,17 +534,14 @@
                             <span class="block text-xs font-bold text-gray-800">Tokineri トキネリ</span>
                             <span class="block text-[9px] text-gray-400 mt-1">傳統手工藝</span>
                         </a>
-
                         <a href="https://maps.app.goo.gl/pLGx5HN3QNdho3De6?g_st=ic" target="_blank" class="bg-gray-50 p-2 rounded hover:bg-yellow-50 transition border border-gray-100 text-center">
                             <span class="block text-xs font-bold text-gray-800">mille</span>
                             <span class="block text-[9px] text-gray-400 mt-1">選品雜貨店</span>
                         </a>
-
                         <a href="https://maps.app.goo.gl/jAJG1o2964E3TEy7A?g_st=ic" target="_blank" class="bg-gray-50 p-2 rounded hover:bg-yellow-50 transition border border-gray-100 text-center">
                             <span class="block text-xs font-bold text-gray-800">Koyomido こよみ堂</span>
                             <span class="block text-[9px] text-gray-400 mt-1">生活必需品</span>
                         </a>
-
                         <a href="https://maps.app.goo.gl/Co3N8ccKz27fsiSEA?g_st=ic" target="_blank" class="bg-gray-50 p-2 rounded hover:bg-yellow-50 transition border border-gray-100 text-center">
                             <span class="block text-xs font-bold text-gray-800">NEST</span>
                             <span class="block text-[9px] text-gray-400 mt-1">進口傢俱</span>
@@ -585,6 +553,7 @@
                     </a>
                 </div>
             </div>
+
             <div class="card border-l-4 border-indigo-500">
                 <div class="flex justify-between items-center mb-2">
                     <span class="tag bg-indigo-100 text-indigo-800">購物攻略</span>
@@ -625,12 +594,12 @@
                         </li>
                     </ul>
                 </div>
-
                 <a href="https://www.google.com/maps/search/?api=1&query=福岡+PatagoniaTenjin" target="_blank" class="btn-nav bg-indigo-600">
                     <i class="fas fa-search-location mr-2"></i> 導航至 Patagonia 天神
                 </a>
             </div>
-                        <div class="card border-l-4 border-pink-500">
+
+            <div class="card border-l-4 border-pink-500">
                 <div class="flex justify-between items-center mb-2">
                     <span class="tag bg-pink-100 text-pink-800">藥妝血拼</span>
                     <span class="text-xs text-gray-400">省錢攻略</span>
@@ -683,7 +652,7 @@
                 </div>
             </div>
 
-                        <div class="card border-l-4 border-lime-500">
+            <div class="card border-l-4 border-lime-500">
                 <div class="flex justify-between items-center mb-2">
                     <span class="tag bg-lime-100 text-lime-800">網球/潮流</span>
                     <span class="text-xs text-gray-400">口袋名單</span>
@@ -733,14 +702,15 @@
                         <i class="fas fa-map-pin mr-1"></i> 停車場Seiwa Park
                     </a>
                     <a href="https://www.google.com/maps/search/?api=1&query=Tenjin+福岡中央自動車駐車場" target="_blank" class="btn-nav bg-gray-700 mt-0 text-xs">
-                        <i class="fas fa-map-pin mr-1"></i> 福岡中央自動車停車場(離晚餐比較近步行10分鐘)
+                        <i class="fas fa-map-pin mr-1"></i> 福岡中央自動車停車場(離晚餐較近)
                     </a>
                 </div>
             </div>
 
-
             <div class="flex items-center gap-3 mb-4 px-2">
-                <div class="w-1 h-8 bg-gray-300 mx-auto"></div> </div>
+                <div class="w-1 h-8 bg-gray-300 mx-auto"></div> 
+            </div>
+
             <div class="card bg-stone-50 border-stone-200">
                 <div class="flex justify-between items-start">
                     <div>
@@ -749,22 +719,15 @@
                     </div>
                     <span class="text-xs font-bold text-gray-400">推薦</span>
                 </div>
-
                 <p class="text-sm text-gray-600 mt-2">
-
                     自家烘焙咖啡廳。<br>
-
                     <span class="text-xs text-gray-500">推薦：手沖咖啡、吐司、布丁。</span>
-
                 </p>
-
                 <a href="https://www.google.com/maps/search/?api=1&query=福岡+Michikusa Coffee Brewers" target="_blank" class="btn-nav bg-stone-700 text-white mt-3">
-
                     <i class="fas fa-coffee mr-2"></i> 導航去喝咖啡
-
                 </a>
-
             </div>
+
             <div class="card card-res" style="border-left-color: #1976D2;">
                 <div class="flex justify-between items-start">
                     <span class="tag tag-res" style="background:#1565C0;">重要預約</span>
@@ -787,13 +750,13 @@
                 <h2 class="serif text-2xl font-bold">2/18 <span class="text-sm font-sans font-normal text-gray-500">Wed</span></h2>
                 <span id="weather-4" class="text-xs text-gray-500"><i class="fas fa-sync fa-spin mr-1"></i>太宰府載入中...</span>
             </div>
-<div class="flex flex-col items-center my-2 opacity-60">
-    <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
-    <div class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600 flex items-center">
-        <i class="fas fa-car mr-2"></i> 約 35分
-    </div>
-    <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
-</div>
+            <div class="flex flex-col items-center my-2 opacity-60">
+                <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
+                <div class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600 flex items-center">
+                    <i class="fas fa-car mr-2"></i> 約 35分
+                </div>
+                <div class="h-4 border-l-2 border-dashed border-gray-300"></div>
+            </div>
 
             <div class="card">
                 <span class="tag tag-flight">文化</span>
@@ -812,7 +775,7 @@
             </div>
         </div>
 
-         <div class="mb-8">
+        <div class="mb-8">
             <div class="flex justify-between items-baseline mb-3 px-1">
                 <h2 class="serif text-2xl font-bold">2/19 <span class="text-sm font-sans font-normal text-gray-500">Thu</span></h2>
                 <span id="weather-5" class="text-xs text-gray-500"><i class="fas fa-sync fa-spin mr-1"></i>福岡載入中...</span>
@@ -838,7 +801,7 @@
     <div id="p-info" class="page">
         <h2 class="serif text-2xl font-bold mb-4">實用資訊</h2>
         
-<div class="card">
+        <div class="card">
             <h3 class="font-bold border-b pb-2 mb-3 text-lg text-gray-800">
                 <i class="fas fa-car text-gray-500 mr-2"></i>租車確認單
             </h3>
@@ -951,7 +914,7 @@
     </nav>
 
     <script>
-        // 頁面切換邏輯
+        // --- 📱 分頁切換邏輯 ---
         function switchPage(pageId, btn) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
@@ -962,7 +925,7 @@
             window.scrollTo(0,0);
         }
 
-        // 記帳邏輯 (使用 LocalStorage 永久儲存)
+        // --- 💰 記帳邏輯 (LocalStorage) ---
         let expenses = JSON.parse(localStorage.getItem('kyushu_expenses')) || [];
 
         function renderExpenses() {
@@ -995,7 +958,7 @@
             const cost = document.getElementById('ex-cost').value;
             if (name && cost) {
                 const now = new Date();
-                const dateStr = `${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${now.getMinutes().toString().padStart(2,'0')}`;
+                const dateStr = `${now.getMonth()+1}/${now.getDate()} ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
                 expenses.unshift({ name, cost, date: dateStr });
                 localStorage.setItem('kyushu_expenses', JSON.stringify(expenses));
                 document.getElementById('ex-name').value = '';
@@ -1011,42 +974,36 @@
                 renderExpenses();
             }
         }
+        renderExpenses(); // 初始載入記帳資料
 
-        // 初始化
-        renderExpenses();
         // --- ☁️ 即時天氣功能 (Open-Meteo API) ---
         async function getWeather() {
-            // 定義每天的地點座標 (緯度, 經度, 地名)
             const schedule = [
-                { lat: 32.789, lon: 130.741, name: "熊本", date: "2026-02-14" }, // Day 1
-                { lat: 33.265, lon: 131.358, name: "由布院", date: "2026-02-15" }, // Day 2
-                { lat: 33.111, lon: 131.237, name: "九重", date: "2026-02-16" }, // Day 3 (滑雪場)
-                { lat: 33.590, lon: 130.401, name: "福岡", date: "2026-02-17" }, // Day 4
-                { lat: 33.515, lon: 130.524, name: "太宰府", date: "2026-02-18" }, // Day 5
-                { lat: 33.585, lon: 130.450, name: "福岡", date: "2026-02-19" }  // Day 6
+                { lat: 32.789, lon: 130.741, name: "熊本", date: "2026-02-14" }, 
+                { lat: 33.265, lon: 131.358, name: "由布院", date: "2026-02-15" }, 
+                { lat: 33.111, lon: 131.237, name: "九重", date: "2026-02-16" }, 
+                { lat: 33.590, lon: 130.401, name: "福岡", date: "2026-02-17" }, 
+                { lat: 33.515, lon: 130.524, name: "太宰府", date: "2026-02-18" }, 
+                { lat: 33.585, lon: 130.450, name: "福岡", date: "2026-02-19" }  
             ];
 
-            // WMO 天氣代碼轉換圖示
             function getIcon(code) {
-                if (code <= 1) return '<i class="fas fa-sun text-orange-400"></i>'; // 晴天
-                if (code <= 3) return '<i class="fas fa-cloud-sun text-gray-400"></i>'; // 多雲
-                if (code <= 48) return '<i class="fas fa-smog text-gray-400"></i>'; // 霧
-                if (code <= 67) return '<i class="fas fa-umbrella text-blue-400"></i>'; // 雨
-                if (code <= 77) return '<i class="fas fa-snowflake text-sky-300"></i>'; // 雪 (九重重點!)
-                if (code <= 82) return '<i class="fas fa-cloud-showers-heavy text-blue-600"></i>'; // 大雨
-                return '<i class="fas fa-bolt text-yellow-500"></i>'; // 雷雨/其他
+                if (code <= 1) return '<i class="fas fa-sun text-orange-400"></i>'; 
+                if (code <= 3) return '<i class="fas fa-cloud-sun text-gray-400"></i>'; 
+                if (code <= 48) return '<i class="fas fa-smog text-gray-400"></i>'; 
+                if (code <= 67) return '<i class="fas fa-umbrella text-blue-400"></i>'; 
+                if (code <= 77) return '<i class="fas fa-snowflake text-sky-300"></i>'; 
+                if (code <= 82) return '<i class="fas fa-cloud-showers-heavy text-blue-600"></i>'; 
+                return '<i class="fas fa-bolt text-yellow-500"></i>'; 
             }
 
-            // 迴圈抓取每一天的天氣
             for (let i = 0; i < schedule.length; i++) {
                 const day = schedule[i];
                 const element = document.getElementById(`weather-${i}`);
                 if (!element) continue;
 
                 try {
-                    // 呼叫 API (請求該日期的高低溫與天氣現象)
                     const url = `https://api.open-meteo.com/v1/forecast?latitude=${day.lat}&longitude=${day.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&start_date=${day.date}&end_date=${day.date}`;
-                    
                     const response = await fetch(url);
                     const data = await response.json();
 
@@ -1055,10 +1012,8 @@
                         const max = Math.round(data.daily.temperature_2m_max[0]);
                         const min = Math.round(data.daily.temperature_2m_min[0]);
                         
-                        // 更新畫面
                         element.innerHTML = `${getIcon(code)} ${day.name} ${max}° / ${min}°`;
                         
-                        // 特別功能：如果是九重滑雪場且有雪，字體變藍色
                         if (day.name === "九重" && (code >= 71 || max <= 2)) {
                             element.classList.add("font-bold", "text-blue-600");
                             element.innerHTML += " (有雪!)";
@@ -1070,9 +1025,7 @@
                 }
             }
         }
-
-        // 啟動天氣功能
-        getWeather();
+        getWeather(); // 初始載入天氣資料
     </script>
 </body>
 </html>
